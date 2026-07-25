@@ -15,7 +15,7 @@ export function TrackingAnalytics({ database }: TrackingAnalyticsProps) {
     let missedCount = 0;
 
     // Identify tracking columns
-    const trackingColumns = database.columns.filter(c => 
+    const trackingColumns = database.columns.filter(c =>
       c.type === 'checkbox' || c.type === 'status' || c.type === 'progress'
     );
 
@@ -26,7 +26,7 @@ export function TrackingAnalytics({ database }: TrackingAnalyticsProps) {
     database.rows.forEach(row => {
       trackingColumns.forEach(col => {
         const val = row.values[col.id];
-        
+
         if (col.type === 'checkbox') {
           if (val === true) completedCount++;
           else if (val === false) missedCount++;
@@ -80,7 +80,7 @@ export function TrackingAnalytics({ database }: TrackingAnalyticsProps) {
       </div>
 
       <div className="flex flex-row items-center justify-between p-4 gap-6 max-w-4xl mx-auto">
-        
+
         {/* Pie Chart */}
         <div className="flex-1 flex flex-col items-center justify-center min-w-[200px]">
           {pieData.length > 0 ? (
@@ -101,7 +101,7 @@ export function TrackingAnalytics({ database }: TrackingAnalyticsProps) {
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
                   </Pie>
-                  <Tooltip 
+                  <Tooltip
                     contentStyle={{ borderRadius: '6px', border: '1px solid var(--border)', fontSize: '11px', padding: '4px 8px' }}
                     itemStyle={{ color: 'var(--foreground)' }}
                   />
@@ -118,6 +118,7 @@ export function TrackingAnalytics({ database }: TrackingAnalyticsProps) {
           )}
         </div>
 
+        h
         {/* List Breakdown */}
         <div className="flex-1 space-y-2.5 min-w-[200px]">
           <div className="flex items-center justify-between text-xs p-2.5 border-b border-border/40">
