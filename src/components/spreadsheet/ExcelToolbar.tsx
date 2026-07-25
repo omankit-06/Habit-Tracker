@@ -3,11 +3,10 @@
 import React, { useState } from 'react';
 import { Database } from '@/types/database';
 import { useDatabaseStore } from '@/lib/store/useDatabaseStore';
-import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { 
   Undo2, Redo2, Save, Search, Sparkles, Plus, 
-  Sun, Moon, Loader2, Wand2, CheckSquare
+  Loader2, Wand2, CheckSquare
 } from 'lucide-react';
 
 interface ExcelToolbarProps {
@@ -29,7 +28,6 @@ export function ExcelToolbar({ database, onOpenAddColumn }: ExcelToolbarProps) {
     autoStructureColumns
   } = useDatabaseStore();
 
-  const { theme, setTheme } = useTheme();
   const [isAutoStructuring, setIsAutoStructuring] = useState(false);
 
   const handleExportCSV = () => {
@@ -77,17 +75,17 @@ export function ExcelToolbar({ database, onOpenAddColumn }: ExcelToolbarProps) {
   };
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-1.5 bg-muted/30 border-b border-border/80 text-xs select-none">
+    <div className="flex items-center justify-between gap-2 px-3 py-1.5 bg-zinc-900 border-b border-zinc-800 text-xs overflow-x-auto scrollbar-none shrink-0">
       {/* Ribbon Action Buttons */}
-      <div className="flex items-center gap-1 overflow-x-auto py-0.5">
+      <div className="flex items-center gap-1.5 shrink-0">
         {/* History: Undo / Redo */}
-        <div className="flex items-center gap-0.5 border-r border-border/60 pr-1.5">
+        <div className="flex items-center gap-0.5 border-r border-zinc-800 pr-1.5">
           <Button
             variant="ghost"
             size="icon"
             onClick={undo}
             disabled={past.length === 0}
-            className="h-7 w-7 text-muted-foreground hover:text-foreground disabled:opacity-30"
+            className="h-7 w-7 text-zinc-400 hover:text-white disabled:opacity-30"
             title="Undo (Ctrl+Z)"
           >
             <Undo2 className="w-3.5 h-3.5" />
@@ -98,7 +96,7 @@ export function ExcelToolbar({ database, onOpenAddColumn }: ExcelToolbarProps) {
             size="icon"
             onClick={redo}
             disabled={future.length === 0}
-            className="h-7 w-7 text-muted-foreground hover:text-foreground disabled:opacity-30"
+            className="h-7 w-7 text-zinc-400 hover:text-white disabled:opacity-30"
             title="Redo (Ctrl+Y)"
           >
             <Redo2 className="w-3.5 h-3.5" />
@@ -108,34 +106,34 @@ export function ExcelToolbar({ database, onOpenAddColumn }: ExcelToolbarProps) {
             variant="ghost"
             size="icon"
             onClick={handleExportCSV}
-            className="h-7 w-7 text-muted-foreground hover:text-foreground"
+            className="h-7 w-7 text-zinc-400 hover:text-white"
             title="Save / Export CSV"
           >
             <Save className="w-3.5 h-3.5" />
           </Button>
         </div>
-      </div>
 
-      {/* Right Controls: Search, AI & Theme */}
-      <div className="flex items-center gap-2 shrink-0">
         {/* Search */}
-        <div className="relative w-36 sm:w-44">
-          <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+        <div className="relative w-28 sm:w-44">
+          <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-500" />
           <input
             type="text"
-            placeholder="Search Excel..."
+            placeholder="Search..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-8 pr-2 h-7 text-[11px] rounded-md bg-background border border-border/70 focus:outline-none focus:border-emerald-500"
+            className="w-full pl-8 pr-2 h-7 text-[11px] rounded-md bg-zinc-950 border border-zinc-800 text-zinc-200 focus:outline-none focus:border-emerald-500"
           />
         </div>
+      </div>
 
+      {/* Right Controls: AI & Actions */}
+      <div className="flex items-center gap-1.5 shrink-0">
         {/* AI Auto-Structure Button */}
         <Button
           onClick={handleAutoStructure}
           disabled={isAutoStructuring}
           size="sm"
-          className="h-7 px-2.5 gap-1.5 text-[11px] font-bold rounded-md bg-gradient-to-r from-emerald-500 to-teal-500 text-white hover:opacity-90 transition-opacity"
+          className="h-7 px-2.5 gap-1.5 text-[11px] font-bold rounded-md bg-gradient-to-r from-emerald-500 to-teal-500 text-black hover:opacity-90 transition-opacity"
         >
           {isAutoStructuring ? (
             <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -159,38 +157,27 @@ export function ExcelToolbar({ database, onOpenAddColumn }: ExcelToolbarProps) {
         <Button
           onClick={() => addRow(database.id)}
           size="sm"
-          className="h-7 px-2.5 gap-1 text-[11px] font-bold rounded-md bg-zinc-800 dark:bg-zinc-200 hover:bg-zinc-700 dark:hover:bg-zinc-300 text-white dark:text-black shadow-2xs"
+          className="h-7 px-2 gap-1 text-[11px] font-bold rounded-md bg-zinc-800 hover:bg-zinc-700 text-white shadow-2xs"
         >
-          <Plus className="w-3.5 h-3.5 stroke-[3]" /> + Row
+          <Plus className="w-3.5 h-3.5 stroke-[3]" /> <span className="hidden sm:inline">+ Row</span>
         </Button>
 
         <Button
           onClick={() => addColumn(database.id, { name: 'Completed', type: 'checkbox', width: 110 })}
           size="sm"
           className="h-7 px-2.5 gap-1 text-[11px] font-bold rounded-md bg-emerald-600 hover:bg-emerald-700 text-white shadow-2xs"
-          title="Add Checkbox Column for easy tracking"
+          title="Add Checkbox Column"
         >
-          <CheckSquare className="w-3.5 h-3.5" /> + Checkbox
+          <CheckSquare className="w-3.5 h-3.5" /> <span className="hidden sm:inline">+ Checkbox</span>
         </Button>
 
         <Button
           onClick={onOpenAddColumn}
           variant="outline"
           size="sm"
-          className="h-7 px-2 gap-1 text-[11px] font-semibold rounded-md border-border/80"
+          className="h-7 px-2 gap-1 text-[11px] font-semibold rounded-md border-zinc-800 text-zinc-300 hover:bg-zinc-800"
         >
-          <Plus className="w-3.5 h-3.5" /> + Col
-        </Button>
-
-        {/* Theme Toggle */}
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className="h-7 w-7 text-muted-foreground hover:text-foreground"
-          title="Toggle Theme"
-        >
-          {theme === 'dark' ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
+          <Plus className="w-3.5 h-3.5" /> <span className="hidden sm:inline">+ Col</span>
         </Button>
       </div>
     </div>
