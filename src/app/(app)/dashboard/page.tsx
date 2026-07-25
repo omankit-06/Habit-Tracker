@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { useDatabaseStore } from '@/lib/store/useDatabaseStore';
-import { EmptyState } from '@/components/dashboard/empty-state';
 import { DatabaseCard } from '@/components/dashboard/database-card';
 import { SpreadsheetView } from '@/components/spreadsheet/spreadsheet-view';
 import { CreateDatabaseModal } from '@/components/database/create-database-modal';

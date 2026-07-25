@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Database, Column, ActiveCell, CellStyle } from '@/types/database';
+import { Database, Column, ActiveCell } from '@/types/database';
 import { useDatabaseStore } from '@/lib/store/useDatabaseStore';
 import { CellRenderer } from './cell-renderers';
 import { FormulaBar } from './FormulaBar';
@@ -10,7 +10,7 @@ import { SheetTabs } from './SheetTabs';
 import { StatusBar } from './StatusBar';
 import { AddColumnModal } from './add-column-modal';
 import { TrackingAnalytics } from '@/components/analytics/TrackingAnalytics';
-import { Plus, Trash2, MoreHorizontal, Type, CheckSquare, Hash, Calendar, Clock, ChevronDown, ListFilter, Activity, Sliders, Tag, Star, Palette, Link, FileText, Mail, Phone, PieChart, Pencil } from 'lucide-react';
+import { Plus, Trash2, MoreHorizontal, Type, CheckSquare, Hash, Calendar, Clock, ChevronDown, ListFilter, Activity, Sliders, Tag, Star, Palette, Link, FileText, Mail, Phone, Pencil } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,

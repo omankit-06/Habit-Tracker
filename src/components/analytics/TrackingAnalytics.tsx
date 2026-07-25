@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import { Database, Column } from '@/types/database';
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { Database } from '@/types/database';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import { Activity, CheckCircle2, CircleDashed } from 'lucide-react';
 
 interface TrackingAnalyticsProps {

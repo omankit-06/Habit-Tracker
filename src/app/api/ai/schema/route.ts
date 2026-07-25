@@ -12,16 +12,16 @@ export async function POST(request: Request) {
     // In a real GCP environment, this would call Gemini API:
     // const prompt = `Analyze this spreadsheet grid: ${JSON.stringify(rows)}. Infer semantic column names and data types (text, checkbox, etc.) for these columns: ${JSON.stringify(columns)}.`
     
-    const suggestedColumns = columns.map((col: any, index: number) => {
+    const suggestedColumns = columns.map((col: { id: string; name: string }, index: number) => {
       let inferredType = 'text';
       let inferredName = col.name;
 
       // Extract all values for this column across all rows
-      const values = rows.map((r: any) => r.values[col.id]).filter((v: any) => v !== undefined && v !== '');
+      const values = rows.map((r: { values: Record<string, unknown> }) => r.values[col.id]).filter((v: unknown) => v !== undefined && v !== '');
 
       if (values.length > 0) {
         // If all values are boolean or 'yes'/'no' or 'true'/'false'
-        const isCheckbox = values.every((v: any) => 
+        const isCheckbox = values.every((v: unknown) => 
           typeof v === 'boolean' || 
           (typeof v === 'string' && ['yes', 'no', 'true', 'false', 'done', 'todo'].includes(v.toLowerCase()))
         );
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
           inferredName = 'Status / Done';
         } else {
           // Check if it looks like a time
-          const isTime = values.every((v: any) => 
+          const isTime = values.every((v: unknown) => 
             typeof v === 'string' && /^\d{1,2}:\d{2}\s*(AM|PM)?$/i.test(v)
           );
           if (isTime) {

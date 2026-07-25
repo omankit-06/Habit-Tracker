@@ -6,18 +6,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
   Sparkles,
-  Table as TableIcon,
-  CheckCircle2,
   Check,
-  Grid,
-  Zap,
-  ChevronRight,
-  BarChart3,
-  Sliders,
-  Database
+  Grid
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { useState, useEffect } from "react";
 
 const QUOTES = [

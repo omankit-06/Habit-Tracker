@@ -7,7 +7,7 @@ import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { 
   Undo2, Redo2, Save, Search, Sparkles, Plus, 
-  Sun, Moon, Lock, ArrowUpDown, Filter, Loader2, Wand2, CheckSquare
+  Sun, Moon, Loader2, Wand2, CheckSquare
 } from 'lucide-react';
 
 interface ExcelToolbarProps {
