@@ -9,7 +9,7 @@ export default function SignupPage() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>Create your ASCEND account</CardTitle>
+          <CardTitle>Create your ASSCEND account</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">

@@ -56,8 +56,10 @@ export function Navbar({ onMenuClick, showMobileMenu }: NavbarProps) {
           <Menu className="h-5 w-5" />
         </Button>
       )}
-      <Link href="/dashboard" className="font-semibold tracking-tight lg:hidden">
-        ASCEND
+      <Link href="/dashboard">
+        <span className="font-extrabold text-lg text-white tracking-widest hidden sm:inline">
+          ASSCEND
+        </span>
       </Link>
       <div className="hidden text-sm text-muted md:block">
         {dayjs().format("dddd, MMMM D, YYYY")}

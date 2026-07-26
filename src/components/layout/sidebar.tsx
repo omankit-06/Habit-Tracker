@@ -46,7 +46,7 @@ export function Sidebar({ collapsed, onToggle, className }: SidebarProps) {
       <div className="flex h-16 items-center justify-between border-b border-border px-4">
         {!collapsed && (
           <Link href="/dashboard" className="text-lg font-semibold tracking-tight">
-            ASCEND
+            ASSCEND
           </Link>
         )}
         {onToggle && (

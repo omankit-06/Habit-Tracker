@@ -42,7 +42,7 @@ export function AiDrawer() {
               </Badge>
             </div>
             <SheetTitle className="text-2xl font-bold tracking-tight">
-              ✨ ASCEND AI Copilot
+              ✨ ASSCEND AI Copilot
             </SheetTitle>
             <SheetDescription className="text-xs text-muted-foreground leading-relaxed">
               Your Personal Life Operating System is architected to seamlessly integrate with local & remote LLM models.

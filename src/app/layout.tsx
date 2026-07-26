@@ -14,9 +14,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ASCEND — AI Habit Tracker & Daily Discipline",
+  title: "ASSCEND — AI Habit Tracker & Daily Discipline",
   description:
     "Premium AI-powered habit tracking and daily discipline platform.",
+  icons: {
+    icon: "/asscend-logo.svg",
+    shortcut: "/asscend-logo.svg",
+    apple: "/asscend-logo.svg",
+  },
 };
 
 export default function RootLayout({
